@@ -25,12 +25,18 @@ export class TemasListComponent implements OnInit {
     this.loadTemas();
   }
 
+  private sortTemasByName(temas: Tema[]): Tema[] {
+    return [...temas].sort((a, b) =>
+      a.nombre_tema.localeCompare(b.nombre_tema, 'es', { sensitivity: 'base' })
+    );
+  }
+
   loadTemas(): void {
     this.loading = true;
     this.error = null;
     this.temasService.getAll().subscribe({
       next: (data) => {
-        this.temas = data;
+        this.temas = this.sortTemasByName(data);
         this.filterTemas();
         this.loading = false;
       },
@@ -70,7 +76,9 @@ export class TemasListComponent implements OnInit {
   deleteTema(id: number): void {
     this.temasService.remove(id).subscribe({
       next: () => {
-        this.temas = this.temas.filter((t) => t.id !== id);
+        this.temas = this.sortTemasByName(
+          this.temas.filter((t) => t.id !== id)
+        );
         this.filterTemas();
         this.deleteConfirmId = null;
       },
