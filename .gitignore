@@ -1,5 +1,8 @@
 node_modules/
 dist/
+<<<<<<< HEAD
+.angular/
+=======
 .angular/
 
 # Logs
@@ -11,3 +14,4 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 .vscode/
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f

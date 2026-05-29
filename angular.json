@@ -6,20 +6,32 @@
     "temas-frontend": {
       "projectType": "application",
       "schematics": {
+<<<<<<< HEAD
+        "@schematics/angular:component": { "style": "scss" }
+=======
         "@schematics/angular:component": {
           "style": "scss"
         }
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
       },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
+<<<<<<< HEAD
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/temas-frontend",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+=======
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/temas-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
@@ -29,6 +41,13 @@
           "configurations": {
             "production": {
               "budgets": [
+<<<<<<< HEAD
+                { "type": "initial", "maximumWarning": "500kb", "maximumError": "1mb" },
+                { "type": "anyComponentStyle", "maximumWarning": "10kb", "maximumError": "20kb" }
+              ],
+              "fileReplacements": [
+                { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" }
+=======
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
@@ -45,6 +64,7 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
               ],
               "outputHashing": "all"
             },
@@ -59,7 +79,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+<<<<<<< HEAD
+            "production":  { "buildTarget": "temas-frontend:build:production"  },
+=======
             "production": { "buildTarget": "temas-frontend:build:production" },
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
             "development": { "buildTarget": "temas-frontend:build:development" }
           },
           "defaultConfiguration": "development"
@@ -68,6 +92,10 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
+    "analytics": "9fc1225e-4503-4e29-9735-18128d1a2d0b"
+=======
     "analytics": "8185a064-4ab2-469c-8780-fb687858b372"
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
   }
 }

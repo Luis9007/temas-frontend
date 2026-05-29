@@ -1,2 +1,24 @@
+<<<<<<< HEAD
+// @import incluye el CSS en el bundle global (necesario para tablas y layout)
+@import './app/core/shared';
+@import './app/core/form-page';
+@import './app/core/assign-extras';
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--glass-text);
+  min-height: 100vh;
+  background: #0d0f1a;
+}
+
+a, .accent { color: var(--glass-accent); }
+=======
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; padding: 0; }
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f

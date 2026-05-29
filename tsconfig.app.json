@@ -4,6 +4,11 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
+<<<<<<< HEAD
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
+}
+=======
   "files": [
     "src/main.ts"
   ],
@@ -11,3 +16,4 @@
     "src/**/*.d.ts"
   ]
 }
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
