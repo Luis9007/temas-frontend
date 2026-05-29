@@ -7,6 +7,7 @@
     "build:prod": "ng build --configuration production"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@angular/animations": "17.3.0",
     "@angular/common": "17.3.0",
     "@angular/compiler": "17.3.0",
@@ -27,3 +28,24 @@
     "typescript": "5.4.2"
   }
 }
+=======
+    "@angular/animations": "^17.3.0",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.14.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.0",
+    "@angular/cli": "^17.3.0",
+    "@angular/compiler-cli": "^17.3.0",
+    "typescript": "~5.4.0"
+  }
+}
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f

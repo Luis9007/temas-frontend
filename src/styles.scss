@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @import incluye el CSS en el bundle global (necesario para tablas y layout)
 @import './app/core/shared';
 @import './app/core/form-page';
@@ -17,3 +18,7 @@ body {
 }
 
 a, .accent { color: var(--glass-accent); }
+=======
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; padding: 0; }
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f

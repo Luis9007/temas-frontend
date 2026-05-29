@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+=======
+import { RouterOutlet } from '@angular/router';
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
 
 @Component({
   selector: 'app-root',
   standalone: true,
+<<<<<<< HEAD
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
     <nav class="navbar">
@@ -61,5 +66,9 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
       .nav-links a { padding: .35rem .6rem; font-size: .78rem; }
     }
   `]
+=======
+  imports: [RouterOutlet],
+  template: `<router-outlet />`,
+>>>>>>> 976261574fddc967e2e02e05af7784e6b240291f
 })
 export class AppComponent {}
