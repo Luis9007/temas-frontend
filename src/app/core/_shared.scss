@@ -1,0 +1,56 @@
+// Paleta glassmorphism — referencia imagen 2 (navy / púrpura / cristal sutil)
+$glass-bg: rgba(255, 255, 255, 0.06);
+$glass-bg-hover: rgba(255, 255, 255, 0.09);
+$glass-border: rgba(255, 255, 255, 0.1);
+$glass-border-soft: rgba(255, 255, 255, 0.08);
+$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+$accent: #7c9ef8;
+$accent-deep: #6366f1;
+$accent-glow: rgba(124, 158, 248, 0.35);
+$danger: #f87171;
+$danger-glow: rgba(248, 113, 113, 0.3);
+$success: #34d399;
+$text: rgba(255, 255, 255, 0.95);
+$muted: rgba(255, 255, 255, 0.45);
+$radius: 20px;
+$radius-sm: 12px;
+$radius-pill: 999px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+$glass-backdrop-blur: 12px;
+$glass-saturate: 1.12;
+
+@mixin glass($bg: $glass-bg, $border: $glass-border, $blur: $glass-backdrop-blur, $saturate: $glass-saturate) {
+  background: $bg;
+  border: 1px solid $border;
+  backdrop-filter: blur($blur) saturate($saturate);
+  -webkit-backdrop-filter: blur($blur) saturate($saturate);
+  box-shadow: $glass-shadow;
+  border-radius: $radius;
+}
+
+@mixin glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-radius: $radius-pill;
+}
+
+:root {
+  --glass-bg: #{$glass-bg};
+  --glass-bg-hover: #{$glass-bg-hover};
+  --glass-border: #{$glass-border};
+  --glass-shadow: #{$glass-shadow};
+  --glass-accent: #{$accent};
+  --glass-accent-deep: #{$accent-deep};
+  --glass-accent-glow: #{$accent-glow};
+  --glass-text: #{$text};
+  --glass-muted: #{$muted};
+  --glass-radius: #{$radius};
+  --glass-radius-sm: #{$radius-sm};
+  --glass-backdrop-blur: #{$glass-backdrop-blur};
+  --glass-saturate: #{$glass-saturate};
+}

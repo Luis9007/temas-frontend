@@ -1,0 +1,135 @@
+<div class="page-wrapper">
+  <header class="page-header">
+    <div class="header-content">
+      <div class="title-block">
+        <span class="label">Gestión</span>
+        <h1>Temas</h1>
+      </div>
+      <div class="header-actions" *ngIf="!loading && !error">
+        <div class="search-box" *ngIf="temas.length > 0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="search"
+            [(ngModel)]="searchQuery"
+            placeholder="Buscar por nombre..."
+            aria-label="Buscar por nombre de tema"
+          />
+        </div>
+        <a routerLink="/temas/nuevo" class="btn-primary">+ Nuevo tema</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div *ngIf="loading" class="state-block">
+      <div class="spinner"></div>
+      <p>Cargando temas…</p>
+    </div>
+
+    <div *ngIf="error && !loading" class="alert-error">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      {{ error }}
+      <button (click)="loadTemas()" class="btn-retry">Reintentar</button>
+    </div>
+
+    <div *ngIf="!loading && !error">
+      <div *ngIf="temas.length === 0" class="state-block empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/>
+        </svg>
+        <p>No hay temas registrados.</p>
+        <a routerLink="/temas/nuevo" class="btn-primary sm">Crear el primero</a>
+      </div>
+
+      <div *ngIf="temas.length > 0 && filteredTemas.length === 0" class="state-block empty">
+        <p>No se encontraron temas para «{{ searchQuery }}».</p>
+      </div>
+
+      <div *ngIf="filteredTemas.length > 0" class="table-container">
+        <div class="table-meta">
+          {{ filteredTemas.length }} resultado{{ filteredTemas.length !== 1 ? 's' : '' }}
+          <ng-container *ngIf="searchQuery.trim()"> de {{ temas.length }}</ng-container>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="col-id">#</th>
+              <th class="col-name">Nombre del tema</th>
+              <th class="col-actions">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tema of filteredTemas" [class.confirm-row]="deleteConfirmId === tema.id">
+              <td class="col-id">
+                <span class="id-badge">{{ tema.id }}</span>
+              </td>
+              <td class="col-name">{{ tema.nombre_tema }}</td>
+              <td class="col-actions">
+                <div class="actions-group" *ngIf="deleteConfirmId !== tema.id; else confirmBlock">
+                  <a [routerLink]="['/temas', tema.id, 'editar']" class="btn-icon edit" title="Editar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                  </a>
+                  <button (click)="confirmDelete(tema.id)" class="btn-icon delete" title="Eliminar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                      <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+                    </svg>
+                  </button>
+                </div>
+                <ng-template #confirmBlock>
+                  <div class="confirm-actions actions-group">
+                    <span class="confirm-text">¿Eliminar?</span>
+                    <button (click)="deleteTema(tema.id)" class="btn-confirm-yes">Sí</button>
+                    <button (click)="cancelDelete()" class="btn-confirm-no">No</button>
+                  </div>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card-list">
+          <div *ngFor="let tema of filteredTemas" class="data-card" [class.confirm-row]="deleteConfirmId === tema.id">
+            <div class="card-info">
+              <span class="id-badge">{{ tema.id }}</span>
+              <div class="card-details">
+                <span class="card-name">{{ tema.nombre_tema }}</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <ng-container *ngIf="deleteConfirmId !== tema.id; else confirmBlockCard">
+                <a [routerLink]="['/temas', tema.id, 'editar']" class="btn-icon edit">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                </a>
+                <button (click)="confirmDelete(tema.id)" class="btn-icon delete">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                    <path d="M10 11v6"/><path d="M14 11v6"/>
+                  </svg>
+                </button>
+              </ng-container>
+              <ng-template #confirmBlockCard>
+                <div class="confirm-actions">
+                  <span class="confirm-text">¿Eliminar?</span>
+                  <button (click)="deleteTema(tema.id)" class="btn-confirm-yes">Sí</button>
+                  <button (click)="cancelDelete()" class="btn-confirm-no">No</button>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
